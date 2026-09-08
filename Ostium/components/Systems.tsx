@@ -1,13 +1,14 @@
 import Image from 'next/image';
 import Reveal from './Reveal';
 import { systems, fmt } from '@/lib/clinic';
+import { img } from '@/lib/base';
 
 export default function Systems() {
   return (
     <section className="bg-paper px-6 py-20 md:px-10 md:py-28">
       <div className="mx-auto grid max-w-[1180px] gap-12 md:grid-cols-[1fr_1.1fr] md:items-start">
         <div className="relative aspect-[4/5] overflow-hidden rounded-[24px] md:sticky md:top-24">
-          <Image src="/img/implant-macro.png" alt="Титановый имплант в пинцете, крупно" fill sizes="(min-width:768px) 45vw, 100vw" className="object-cover" />
+          <Image src={img('implant-macro.png')} alt="Титановый имплант в пинцете, крупно" fill sizes="(min-width:768px) 45vw, 100vw" className="object-cover" />
         </div>
         <div>
           <h2 className="display-2 mb-4">Четыре системы.<br />Одна <em>гарантия</em></h2>
