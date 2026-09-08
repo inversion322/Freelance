@@ -1,0 +1,6 @@
+{
+  "prompt": "Environmental portrait, 4:5, of a female prosthodontist about 38, Russian, dark hair tied back, wearing a light grey clinic tunic, holding a zirconia dental bridge model, in a small dental laboratory with a milling machine out of focus behind her, looking at the model, not at camera. Documentary editorial photograph for a private dental clinic website. Cool northern daylight from a large window, calm muted palette of warm grey, pale oak, concrete and stainless steel. Shot on 35mm, natural shallow depth of field, honest and unposed, no retouching. STRICTLY AVOID: stock-photo smiling at camera, thumbs up, teal or mint medical cliche colours, glossy skin, cartoon white teeth, open mouths, blood. Photographic realism, no illustration, no 3D, no text.",
+  "model": "google/gemini-3-pro-image",
+  "tool": "tools/gen-image.mjs",
+  "via": "openrouter"
+}

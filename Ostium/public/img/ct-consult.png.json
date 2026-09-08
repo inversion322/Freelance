@@ -1,0 +1,6 @@
+{
+  "prompt": "A surgeon's hands and a large monitor filling most of the frame: on the screen a black-and-white CBCT panoramic scan of a lower jaw with a planned implant position marked by a thin overlay. The surgeon's finger points at the bone above the nerve canal. Seated patient visible only as a shoulder and grey sleeve at the edge of frame. Consulting room, cool daylight. Documentary editorial photograph for a private dental clinic website. Cool northern daylight from a large window, calm muted palette of blue-grey, warm concrete, pale oak and stainless steel, matching a #E4E9EC paper tone. Shot on 35mm, natural shallow depth of field, honest and unposed. STRICTLY AVOID: stock-photo smiling faces looking at camera, thumbs up, bright teal or mint medical cliche colours, glossy over-retouched skin, sparkling white cartoon teeth, close-up of an open mouth, blood, anything gruesome. Photographic realism, no illustration, no 3D render, no text overlay.",
+  "model": "google/gemini-3-pro-image",
+  "tool": "tools/gen-image.mjs",
+  "via": "openrouter"
+}

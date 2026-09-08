@@ -1,0 +1,6 @@
+{
+  "prompt": "A small in-house dental laboratory: technician's bench with a zirconia milling machine, a shelf of plaster jaw models, a sintering furnace, a desk lamp; a technician's hands at the corner adjusting a bridge under a magnifier. Documentary editorial photograph for a private dental clinic website. Cool northern daylight, calm muted palette of warm grey, pale oak, concrete and stainless steel. 35mm, shallow depth of field, honest and unposed. AVOID: smiling at camera, teal or mint cliche colours, glossy skin, cartoon teeth, open mouths, blood. Photographic realism, no illustration, no 3D, no text.",
+  "model": "google/gemini-3.1-flash-lite-image",
+  "tool": "tools/gen-image.mjs",
+  "via": "openrouter"
+}

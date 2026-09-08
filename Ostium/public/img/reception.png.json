@@ -1,0 +1,6 @@
+{
+  "prompt": "The empty waiting area of a small private dental clinic, early morning before opening. Four upholstered chairs in muted grey-green, a low oak table with a folded grey blanket and a glass carafe of water, a tall window with linen curtains, a plain concrete-plaster wall. On the wall a small completely BLANK brushed-steel plate with no engraving at all. Nobody in frame. Quiet, ordinary, real. Documentary editorial photograph for a private dental clinic website. Cool northern daylight from a large window, calm muted palette of blue-grey, warm concrete, pale oak and stainless steel, matching a #E4E9EC paper tone. Shot on 35mm, natural shallow depth of field, honest and unposed. STRICTLY AVOID: stock-photo smiling faces, bright teal or mint medical cliche colours, glossy retouching, cartoon teeth, open mouths. Photographic realism, no illustration, no 3D render. ABSOLUTELY NO TEXT, LETTERS OR WORDS ANYWHERE IN THE IMAGE.",
+  "model": "google/gemini-3-pro-image",
+  "tool": "tools/gen-image.mjs",
+  "via": "openrouter"
+}

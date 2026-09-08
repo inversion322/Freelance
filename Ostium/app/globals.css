@@ -1,0 +1,109 @@
+@import "tailwindcss";
+
+@theme {
+  --color-paper: #ECEAE5;
+  --color-paper-2: #F6F5F2;
+  --color-ink: #151412;
+  --color-ink-2: #1E1D1A;
+  --color-muted: #6B6862;
+  --color-muted-on-dark: #A9A59C;
+  --color-line: #D5D2CB;
+  --color-line-dark: #34322E;
+  --color-accent: #1E3D8F;
+  --color-accent-hi: #2A4FB0;
+  --font-serif: var(--font-prata), "Prata", Georgia, "Times New Roman", serif;
+  --font-sans: var(--font-manrope), "Manrope", -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+:root {
+  color-scheme: light;
+  --seam: 50%;
+}
+
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  font-variant-numeric: tabular-nums;
+}
+
+::selection { background: var(--color-accent); color: #fff; }
+input, textarea { caret-color: var(--color-accent); }
+:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 3px; border-radius: 2px; }
+
+* { scrollbar-width: thin; scrollbar-color: var(--color-line) transparent; }
+*::-webkit-scrollbar { width: 10px; }
+*::-webkit-scrollbar-thumb { background: var(--color-line); border-radius: 999px; border: 3px solid var(--color-paper); }
+
+h1, h2, h3 { font-family: var(--font-serif); font-weight: 400; letter-spacing: -0.015em; line-height: 0.98; text-wrap: balance; }
+.display { font-size: clamp(44px, 7vw, 112px); }
+.display-2 { font-size: clamp(36px, 5vw, 76px); }
+.display-3 { font-size: clamp(28px, 3.2vw, 44px); }
+em { font-style: italic; }
+
+@layer components {
+.pill {
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 14px 22px; border-radius: 999px;
+  font-weight: 500; font-size: 15px; line-height: 1;
+  transition: background-color 160ms ease, color 160ms ease, transform 160ms var(--ease-out);
+  cursor: pointer;
+}
+.pill:active { transform: scale(0.97); }
+.pill-ink { background: var(--color-ink); color: #fff; }
+@media (hover: hover) and (pointer: fine) {
+  .pill-ink:hover { background: var(--color-accent); }
+  .pill-ink:hover .plus-icon { transform: rotate(90deg); }
+}
+.plus-icon { display: inline-block; transition: transform 160ms var(--ease-out); }
+
+/* появление кнопки в шапке: один раз, при первом показе */
+.pill-enter {
+  opacity: 1; transform: translateY(0) scale(1);
+  transition: opacity 240ms var(--ease-out), transform 240ms var(--ease-out),
+              background-color 160ms ease, color 160ms ease;
+}
+@starting-style { .pill-enter { opacity: 0; transform: translateY(6px) scale(0.97); } }
+@media (prefers-reduced-motion: reduce) {
+  .pill, .pill-enter { transition: background-color 160ms ease, color 160ms ease, opacity 240ms ease; }
+  .pill:active, .pill-ink:hover .plus-icon { transform: none; }
+  @starting-style { .pill-enter { transform: none; } }
+}
+.pill-paper { background: var(--color-paper-2); color: var(--color-ink); }
+.pill-paper:hover { background: #fff; }
+.pill-accent { background: var(--color-accent); color: #fff; }
+.pill-accent:hover { background: var(--color-accent-hi); }
+
+.hair { border-top: 1px solid var(--color-line); }
+.dark .hair { border-top-color: var(--color-line-dark); }
+
+.row-arrow::after {
+  content: "↗"; font-size: 14px; margin-left: auto; opacity: .55;
+  transition: transform .2s ease, opacity .2s ease;
+}
+.row-arrow:hover::after { transform: translate(2px, -2px); opacity: 1; }
+
+.seam-text { color: #fff; mix-blend-mode: difference; }
+
+.kb { animation: kenburns 24s ease-in-out infinite alternate; transform-origin: 60% 40%; }
+@keyframes kenburns { from { transform: scale(1); } to { transform: scale(1.08); } }
+@media (prefers-reduced-motion: reduce) { .kb { animation: none; } }
+
+.bw { filter: grayscale(1) contrast(1.05); transition: filter .5s ease; }
+.bw:hover { filter: grayscale(0) contrast(1); }
+
+details > summary { list-style: none; cursor: pointer; }
+details > summary::-webkit-details-marker { display: none; }
+details[open] .plus { transform: rotate(45deg); }
+.plus { display: inline-block; transition: transform .25s ease; }
+
+.reveal { opacity: 1; }
+
+}

@@ -1,0 +1,6 @@
+{
+  "prompt": "Portrait of a Russian prosthodontist, woman around 38, dark hair pulled back low, no makeup beyond the natural, small stud earrings, holding a white zirconia crown model between two fingers at chest height. Documentary editorial portrait for a private dental clinic website, three-quarter view, calm neutral expression, NOT smiling at camera, gaze slightly off-lens. Cool northern daylight from a window, muted blue-grey and warm concrete background out of focus, dark navy medical scrub top. 85mm, shallow depth of field, honest, unretouched skin, no glamour lighting. Photographic realism, no illustration, no text.",
+  "model": "google/gemini-3-pro-image",
+  "tool": "tools/gen-image.mjs",
+  "via": "openrouter"
+}

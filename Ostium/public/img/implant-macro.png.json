@@ -1,0 +1,6 @@
+{
+  "prompt": "An extreme macro close-up of a single titanium dental implant held in the tips of sterile stainless tweezers over a blue-grey surgical drape. The implant's spiral thread and matte roughened surface are sharply detailed, the drape falls out of focus behind. Cold precise light, almost a product photograph of a machined part. Documentary editorial photograph for a private dental clinic website. Cool northern daylight from a large window, calm muted palette of blue-grey, warm concrete, pale oak and stainless steel, matching a #E4E9EC paper tone. Shot on 35mm, natural shallow depth of field, honest and unposed. STRICTLY AVOID: stock-photo smiling faces looking at camera, thumbs up, bright teal or mint medical cliche colours, glossy over-retouched skin, sparkling white cartoon teeth, close-up of an open mouth, blood, anything gruesome. Photographic realism, no illustration, no 3D render, no text overlay.",
+  "model": "google/gemini-3-pro-image",
+  "tool": "tools/gen-image.mjs",
+  "via": "openrouter"
+}

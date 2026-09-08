@@ -1,0 +1,6 @@
+{
+  "prompt": "Environmental portrait, 4:5, of a male implant surgeon about 45, Russian, short dark hair with grey at the temples, calm serious face, wearing a dark navy scrub top with surgical loupes hanging at his neck, standing in a surgery room, looking slightly off camera, not smiling. Documentary editorial photograph for a private dental clinic website. Cool northern daylight from a large window, calm muted palette of warm grey, pale oak, concrete and stainless steel. Shot on 35mm, natural shallow depth of field, honest and unposed, no retouching. STRICTLY AVOID: stock-photo smiling at camera, thumbs up, teal or mint medical cliche colours, glossy skin, cartoon white teeth, open mouths, blood. Photographic realism, no illustration, no 3D, no text.",
+  "model": "google/gemini-3-pro-image",
+  "tool": "tools/gen-image.mjs",
+  "via": "openrouter"
+}
