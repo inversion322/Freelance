@@ -23,7 +23,7 @@ export default function Contact() {
       <div className="mx-auto max-w-[1180px]">
         <div className="grid gap-12 md:grid-cols-[1fr_1.2fr]">
           <div>
-            <h2 className="display-2">Бесплатная КТ<br />и <em>план</em></h2>
+            <h2 className="display-2">Бесплатное КТ<br />и <em>план</em></h2>
             <p className="mt-6 max-w-[40ch] text-muted-on-dark">
               Снимок, план лечения и зафиксированная цена — за одно посещение, без обязательств.
             </p>
