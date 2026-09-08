@@ -1,0 +1,86 @@
+@import "tailwindcss";
+
+@theme {
+  --color-paper: #EFEAE2;
+  --color-paper-2: #F7F4EE;
+  --color-ink: #1C1915;
+  --color-ink-2: #262220;
+  --color-muted: #6E675D;
+  --color-muted-on-dark: #B9B0A2;
+  --color-line: #D9D2C6;
+  --color-line-dark: #3C3631;
+  --color-pine: #1F3D2E;
+  --color-pine-2: #2A5240;
+  --font-serif: var(--font-cormorant), "Cormorant Garamond", Georgia, serif;
+  --font-sans: var(--font-manrope), "Manrope", -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+:root { color-scheme: light; --ease-out: cubic-bezier(0.23, 1, 0.32, 1); }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  font-variant-numeric: tabular-nums;
+}
+
+::selection { background: var(--color-pine); color: #fff; }
+input, textarea { caret-color: var(--color-pine); }
+:focus-visible { outline: 2px solid var(--color-pine); outline-offset: 3px; border-radius: 2px; }
+* { scrollbar-width: thin; scrollbar-color: var(--color-line) transparent; }
+
+h1, h2, h3 { font-family: var(--font-serif); font-weight: 500; letter-spacing: -0.01em; line-height: 1.02; text-wrap: balance; }
+.display { font-size: clamp(44px, 6.4vw, 96px); }
+.display-2 { font-size: clamp(34px, 4.2vw, 60px); }
+.display-3 { font-size: clamp(26px, 2.6vw, 36px); }
+p { margin: 0; }
+
+@layer components {
+  .pill {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 13px 20px; border-radius: 999px;
+    font-weight: 500; font-size: 14px; line-height: 1; cursor: pointer;
+    transition: background-color 160ms ease, color 160ms ease, border-color 160ms ease, transform 160ms var(--ease-out);
+  }
+  .pill:active { transform: scale(0.97); }
+  .pill-pine { background: var(--color-pine); color: #fff; }
+  .pill-ink { background: var(--color-ink); color: #fff; }
+  .pill-paper { background: var(--color-paper-2); color: var(--color-ink); border: 1px solid var(--color-line); }
+  .pill-ghost { background: transparent; color: var(--color-ink); border: 1px solid var(--color-line); }
+  @media (hover: hover) and (pointer: fine) {
+    .pill-pine:hover { background: var(--color-pine-2); }
+    .pill-ink:hover { background: var(--color-pine); }
+    .pill-paper:hover, .pill-ghost:hover { border-color: var(--color-ink); }
+  }
+  .chip {
+    display: inline-flex; align-items: center; padding: 8px 14px; border-radius: 999px;
+    border: 1px solid var(--color-line); background: transparent; font-size: 13px; font-weight: 500;
+    cursor: pointer; transition: background-color 140ms ease, color 140ms ease, border-color 140ms ease;
+  }
+  .chip[aria-pressed="true"] { background: var(--color-pine); color: #fff; border-color: var(--color-pine); }
+  @media (hover: hover) and (pointer: fine) { .chip:hover { border-color: var(--color-ink); } }
+  .hair { border-top: 1px solid var(--color-line); }
+  .dark .hair { border-top-color: var(--color-line-dark); }
+  .row-arrow::after { content: "↗"; font-size: 13px; margin-left: auto; opacity: .5; transition: transform 160ms var(--ease-out), opacity 160ms ease; }
+  .row-arrow:hover::after { transform: translate(2px, -2px); opacity: 1; }
+  .card { background: var(--color-paper-2); border-radius: 20px; overflow: hidden; }
+  .kb { animation: kenburns 28s ease-in-out infinite alternate; transform-origin: 50% 60%; }
+  @keyframes kenburns { from { transform: scale(1); } to { transform: scale(1.06); } }
+  details > summary { list-style: none; cursor: pointer; }
+  details > summary::-webkit-details-marker { display: none; }
+  .plus { display: inline-block; transition: transform 200ms var(--ease-out); }
+  details[open] .plus { transform: rotate(45deg); }
+  @media (prefers-reduced-motion: reduce) { .kb { animation: none; } .pill:active { transform: none; } }
+}
+
+@media print {
+  body { background: #fff; }
+  .no-print { display: none !important; }
+  .print-only { display: block !important; }
+}
+.print-only { display: none; }

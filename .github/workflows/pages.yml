@@ -28,15 +28,29 @@ jobs:
         env:
           NEXT_PUBLIC_BASE_PATH: /Freelance/Ostium
         run: npm run build
+      - name: Install (Versta)
+        working-directory: Versta
+        run: npm ci
+      - name: Build (Versta)
+        working-directory: Versta
+        env:
+          NEXT_PUBLIC_BASE_PATH: /Freelance/Versta
+        run: npm run build
       - name: Assemble site
         run: |
-          mkdir -p site/Ostium
+          mkdir -p site/Ostium site/Versta
           cp -r Ostium/out/. site/Ostium/
+          cp -r Versta/out/. site/Versta/
           touch site/.nojekyll
           cat > site/index.html <<'HTML'
-          <!doctype html><meta charset="utf-8"><title>Freelance</title>
-          <meta http-equiv="refresh" content="0; url=./Ostium/">
-          <a href="./Ostium/">Остеум — клиника имплантологии</a>
+          <!doctype html><html lang="ru"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+          <title>Freelance — кейсы</title>
+          <style>body{margin:0;background:#111;color:#eee;font:16px/1.5 -apple-system,system-ui,sans-serif;padding:48px 24px}h1{font-weight:500;font-size:22px;margin:0 0 24px}a{display:block;color:#eee;text-decoration:none;padding:18px 0;border-top:1px solid #333}a:hover{color:#fff}small{display:block;color:#999}</style>
+          <h1>Кейсы портфолио</h1>
+          <a href="./Ostium/">Остеум — клиника имплантологии<small>Next 16, калькулятор стоимости, реальная фотография</small></a>
+          <a href="./Versta/">Верста — дома из клеёного бруса<small>каталог с фильтрами, планировки, калькулятор сметы</small></a>
+          <a href="./" style="border-bottom:1px solid #333"><small>Клиники и компании вымышленные. Демонстрационные работы.</small></a>
+          </html>
           HTML
       - uses: actions/upload-pages-artifact@v3
         with:
