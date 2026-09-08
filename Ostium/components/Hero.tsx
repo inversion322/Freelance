@@ -9,7 +9,9 @@ export default function Hero() {
       <div className="absolute inset-y-0 right-0 w-full md:w-1/2">
         <Image src={img('operating-room.jpg')} alt="Операционная клиники, хирург и ассистент за работой"
           fill priority sizes="(min-width: 768px) 50vw, 100vw" className="kb object-cover object-[50%_30%]" />
-        <div className="absolute inset-0 bg-ink/40 md:bg-transparent" />
+        <div className="absolute inset-0 bg-ink/55 md:bg-transparent" />
+        {/* козырёк: белая шапка читается над светлым верхом кадра на любом размере */}
+        <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-ink/70 to-transparent" />
       </div>
       <div className="absolute inset-y-0 left-0 hidden w-1/2 bg-paper md:block" />
 
