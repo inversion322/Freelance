@@ -20,7 +20,7 @@ export default function Guarantee() {
             </Reveal>
           </div>
           <div className="relative aspect-[4/5] overflow-hidden rounded-[24px] md:mt-24">
-            <Image src={img('ct-consult.png')} alt="Врач показывает пациенту КТ-снимок на мониторе" fill sizes="(min-width:768px) 45vw, 100vw" className="object-cover" />
+            <Image src={img('ct-consult.jpg')} alt="Врач показывает пациенту КТ-снимок на мониторе" fill sizes="(min-width:768px) 45vw, 100vw" className="object-cover" />
           </div>
         </div>
       </section>

@@ -39,7 +39,7 @@ export default function Day() {
             Так выглядит день пациента, которому восстанавливают всю челюсть. Утром без зубов — вечером с несъёмным протезом.
           </p>
           <div className="relative mt-10 hidden aspect-[16/10] max-w-[440px] overflow-hidden rounded-[20px] md:block">
-            <Image src={img('lab.png')} alt="Зуботехническая лаборатория клиники на том же этаже" fill sizes="440px" className="object-cover" />
+            <Image src={img('lab.jpg')} alt="Зуботехническая лаборатория клиники на том же этаже" fill sizes="440px" className="object-cover" />
             <div className="absolute bottom-3 left-4 text-[13px] text-white/80">Лаборатория на этаже операционной</div>
           </div>
         </div>

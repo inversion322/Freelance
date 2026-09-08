@@ -7,8 +7,8 @@ export default function Hero() {
     <section className="relative min-h-[100svh] overflow-hidden">
       {/* фото: на десктопе правая половина, на телефоне весь экран */}
       <div className="absolute inset-y-0 right-0 w-full md:w-1/2">
-        <Image src={img('operating-room.png')} alt="Операционная клиники, хирург и ассистент за работой"
-          fill priority sizes="(min-width: 768px) 50vw, 100vw" className="kb object-cover" />
+        <Image src={img('operating-room.jpg')} alt="Операционная клиники, хирург и ассистент за работой"
+          fill priority sizes="(min-width: 768px) 50vw, 100vw" className="kb object-cover object-[50%_30%]" />
         <div className="absolute inset-0 bg-ink/40 md:bg-transparent" />
       </div>
       <div className="absolute inset-y-0 left-0 hidden w-1/2 bg-paper md:block" />
