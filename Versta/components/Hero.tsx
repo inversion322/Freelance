@@ -16,11 +16,12 @@ const HouseScene = dynamic(() => import('./HouseScene'), {
 });
 
 /** подписи слоёв — дом разбирается снизу вверх по мере скролла */
+/* границы совпадают с окнами слоёв в HouseScene: кровля 0.04–0.36, стены 0.34–0.66, терраса и фундамент 0.64–1 */
 const layers = [
-  { at: 0.0, title: 'Собранный дом', text: 'Домокомплект встаёт на участке за месяц-полтора.' },
-  { at: 0.3, title: 'Кровля и свесы', text: 'Стропила со скользящими узлами под усадку, свес 550 мм. Гарантия 10 лет.' },
-  { at: 0.55, title: 'Стеновой комплект', text: 'Клеёный брус 202–302 мм, венцы с чашами и перевязкой углов. Гарантия 50 лет.' },
-  { at: 0.8, title: 'Фундамент', text: 'Сваи 200×200×3000 и ростверк 300×400 по отчёту геологии. Гарантия 50 лет.' },
+  { at: 0.0, title: 'Собранный дом', text: 'Домокомплект встаёт на участке за месяц-полтора. Прокрутите — дом разберётся по этапам сборки.' },
+  { at: 0.04, title: 'Кровля и свесы', text: 'Стропила со скользящими узлами под усадку, свес 550 мм, навес над террасой. Гарантия 10 лет.' },
+  { at: 0.34, title: 'Стеновой комплект', text: 'Клеёный брус 202–302 мм, венцы с чашами и перевязкой углов, окна по тёплому контуру. Гарантия 50 лет.' },
+  { at: 0.64, title: 'Терраса и фундамент', text: 'Сваи 200×200×3000, ростверк 300×400 по отчёту геологии, терраса на столбах. Гарантия 50 лет.' },
 ];
 
 export default function Hero() {
@@ -32,7 +33,7 @@ export default function Hero() {
   useEffect(() => {
     if (window.innerWidth < 768 || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     const st = ScrollTrigger.create({
-      trigger: wrap.current, start: 'top top', end: '+=140%', pin: true, scrub: 0.6,
+      trigger: wrap.current, start: 'top top', end: '+=220%', pin: true, scrub: 1.1,
       onUpdate: (self) => {
         progress.current = self.progress;
         let idx = 0; for (let i = 0; i < layers.length; i++) if (self.progress >= layers[i].at) idx = i;
