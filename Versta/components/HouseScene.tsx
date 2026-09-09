@@ -25,8 +25,9 @@ export const WINDOWS = {
   deck:  { from: 0.64, to: 0.84, lift: 0.7 },
   found: { from: 0.64, to: 1.0,  lift: 0.0 },
 };
-/** после этой отметки прогресса ничего не движется: слои встали, камера и поворот замирают */
-const MOTION_END = 0.84;
+/** с появлением последней подписи («Терраса и фундамент», 0.64) камера и поворот замирают;
+ *  дальше только терраса и фундамент занимают свои места по своим окнам */
+const MOTION_END = 0.64;
 const motion = (p: number) => Math.min(p / MOTION_END, 1);
 type LayerKey = keyof typeof WINDOWS;
 const ORDER: LayerKey[] = ['roof', 'walls', 'deck', 'found'];
