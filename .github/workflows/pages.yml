@@ -35,6 +35,7 @@ jobs:
         working-directory: Versta
         env:
           NEXT_PUBLIC_BASE_PATH: /Freelance/Versta
+          NEXT_PUBLIC_ASSET_VERSION: ${{ github.sha }}
         run: npm run build
       - name: Assemble site
         run: |
