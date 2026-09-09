@@ -62,8 +62,38 @@ p { margin: 0; }
     border: 1px solid var(--color-line); background: transparent; font-size: 13px; font-weight: 500;
     cursor: pointer; transition: background-color 140ms ease, color 140ms ease, border-color 140ms ease;
   }
+  .chip { transition: background-color 140ms ease, color 140ms ease, border-color 140ms ease, transform 160ms var(--ease-out); }
+  /* нажатие для любого не-пилюльного контрола: карточки комплектаций, текстовые кнопки */
+  .press { transition: transform 160ms var(--ease-out), border-color 160ms ease, background-color 160ms ease, opacity 160ms ease; }
+  .press:active { transform: scale(0.97); }
+  .chip:active { transform: scale(0.97); }
   .chip[aria-pressed="true"] { background: var(--color-pine); color: #fff; border-color: var(--color-pine); }
   @media (hover: hover) and (pointer: fine) { .chip:hover { border-color: var(--color-ink); } }
+
+  /* карточка каталога: подъём на hover — обратная связь, только для мыши */
+  .card-hover { transition: transform 240ms var(--ease-out), box-shadow 240ms var(--ease-out); will-change: transform; }
+  .card-hover .card-img { transition: transform 400ms var(--ease-out); }
+  @media (hover: hover) and (pointer: fine) { .card-hover:hover .card-img { transform: scale(1.04); } }
+  @media (hover: hover) and (pointer: fine) {
+    .card-hover:hover { transform: translateY(-4px); box-shadow: 0 22px 48px -28px rgba(28, 25, 21, .45); }
+  }
+
+  /* планировка рисуется линией один раз при появлении — CSS-анимация, вне главного потока */
+  .plan-draw rect { stroke-dasharray: 1200; stroke-dashoffset: 0; animation: draw 900ms var(--ease-out) both; }
+  .plan-draw text { animation: fade 400ms ease 500ms both; }
+  @keyframes draw { from { stroke-dashoffset: 1200; } to { stroke-dashoffset: 0; } }
+  @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+
+  /* кнопка в шапке: появление один раз при загрузке */
+  .pill-enter { opacity: 1; transform: translateY(0) scale(1); transition: opacity 240ms var(--ease-out), transform 240ms var(--ease-out), background-color 160ms ease, color 160ms ease, border-color 160ms ease; }
+  @starting-style { .pill-enter { opacity: 0; transform: translateY(6px) scale(0.97); } }
+
+  @media (prefers-reduced-motion: reduce) {
+    .chip:active, .card-hover:hover { transform: none; }
+    .plan-draw rect, .plan-draw text { animation: none; }
+    .pill-enter { transition: opacity 240ms ease; }
+    @starting-style { .pill-enter { transform: none; } }
+  }
   .hair { border-top: 1px solid var(--color-line); }
   .dark .hair { border-top-color: var(--color-line-dark); }
   .row-arrow::after { content: "↗"; font-size: 13px; margin-left: auto; opacity: .5; transition: transform 160ms var(--ease-out), opacity 160ms ease; }

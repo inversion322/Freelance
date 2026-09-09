@@ -42,7 +42,7 @@ export default function Calculator({ picked }: { picked: string | null }) {
               <div className="grid gap-3 md:grid-cols-3">
                 {packages.map((k) => (
                   <button key={k.id} type="button" onClick={() => setPkg(k.id)} aria-pressed={pkg === k.id}
-                    className={`rounded-[16px] border p-4 text-left transition-colors ${pkg === k.id ? 'border-pine bg-paper' : 'border-line hover:border-ink'}`}>
+                    className={`press rounded-[16px] border p-4 text-left ${pkg === k.id ? 'border-pine bg-paper' : 'border-line hover:border-ink'}`}>
                     <div className="font-semibold">{k.title}</div>
                     <div className="mt-1 text-[13px] text-muted">{k.lead}</div>
                     <div className="mt-3 text-[13px] text-pine">{k.id === 'base' ? 'база' : `× ${k.k.toFixed(2)}`}</div>
