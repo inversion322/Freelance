@@ -48,7 +48,7 @@ export default function Hero() {
     <section ref={wrap} className="relative min-h-[100svh] overflow-hidden bg-ink text-white">
       {/* телефон и планшет: фотография; десктоп: дом на собственном тёмном поле */}
       <div className="absolute inset-0 md:hidden">
-        <Image src={img('hero.jpg')} alt="" aria-hidden fill priority sizes="100vw" className="object-cover" />
+        <Image src={img('hero.jpg')} alt="" aria-hidden fill sizes="(min-width: 768px) 1px, 100vw" className="object-cover" />
         <div className="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/55 to-ink/40" />
       </div>
       <div className="absolute inset-y-0 right-0 hidden w-1/2 bg-[radial-gradient(ellipse_at_60%_70%,#24352B_0%,#1C1915_65%)] md:block" />
