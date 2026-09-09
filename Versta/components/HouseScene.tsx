@@ -25,6 +25,9 @@ export const WINDOWS = {
   deck:  { from: 0.64, to: 0.84, lift: 0.7 },
   found: { from: 0.64, to: 1.0,  lift: 0.0 },
 };
+/** после этой отметки прогресса ничего не движется: слои встали, камера и поворот замирают */
+const MOTION_END = 0.84;
+const motion = (p: number) => Math.min(p / MOTION_END, 1);
 type LayerKey = keyof typeof WINDOWS;
 const ORDER: LayerKey[] = ['roof', 'walls', 'deck', 'found'];
 const ease = (t: number) => 1 - Math.pow(1 - THREE.MathUtils.clamp(t, 0, 1), 3);
@@ -121,7 +124,7 @@ function House({ reduce, progress }: { reduce: boolean; progress: MutableRefObje
   useFrame((state, dt) => {
     if (!reduce) built.current = (performance.now() - start.current) / 1000 - 0.3;
     const g = group.current; if (!g) return;
-    const p = progress.current;
+    const p = motion(progress.current);
     const idle = reduce ? 0 : Math.sin(state.clock.elapsedTime * 0.25) * 0.05;
     const ty = -0.55 + idle + p * 0.5 + (reduce ? 0 : pointer.current.x * 0.18);
     const tx = (reduce ? 0 : pointer.current.y * 0.04) + p * 0.14;
@@ -204,7 +207,7 @@ function House({ reduce, progress }: { reduce: boolean; progress: MutableRefObje
 function CameraRig({ progress }: { progress: MutableRefObject<number> }) {
   const target = useRef(new THREE.Vector3(0, -0.15, 0));
   useFrame(({ camera }, dt) => {
-    const p = progress.current;
+    const p = motion(progress.current);
     const k = Math.min(1, dt * 3.5);
     const px = 6.8 + p * 2.4, py = 3.9 + p * 2.6, pz = 8.4 + p * 3.0;
     camera.position.x += (px - camera.position.x) * k;
