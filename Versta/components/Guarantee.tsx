@@ -24,8 +24,8 @@ export default function Guarantee() {
               </div>
             </div>
             <div className="grid grid-cols-2 gap-4 lg:mt-16">
-              <div className="relative aspect-[3/4] overflow-hidden rounded-[20px]"><Image src={img('int-1.jpg')} alt="Гостиная с печью в доме из бруса" fill sizes="(min-width:1024px) 25vw, 50vw" className="object-cover" /></div>
-              <div className="relative mt-10 aspect-[3/4] overflow-hidden rounded-[20px]"><Image src={img('int-2.jpg')} alt="Окно в лес" fill sizes="(min-width:1024px) 25vw, 50vw" className="object-cover" /></div>
+              <div className="relative aspect-[3/4] overflow-hidden rounded-[20px]"><Image src={img('g-rafters.jpg')} alt="Стропильная система и обрешётка из клеёного бруса" fill sizes="(min-width:1024px) 25vw, 50vw" className="object-cover" /></div>
+              <div className="relative mt-10 aspect-[3/4] overflow-hidden rounded-[20px]"><Image src={img('g-frame.jpg')} alt="Каркас кровли на стойках из клеёного бруса" fill sizes="(min-width:1024px) 25vw, 50vw" className="object-cover" /></div>
             </div>
           </div>
         </div>

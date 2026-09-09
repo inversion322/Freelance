@@ -29,3 +29,5 @@
 | p-sosna-124.jpg | https://unsplash.com/photos/I229m0jAeN8 (Ksusha Vasileva) |
 | p-sosna-158.jpg | https://unsplash.com/photos/mdC9-Z71Wog (Cezar Sampio) |
 | p-list-167.jpg | https://www.pexels.com/photo/16270705/ (ASPhotography) |
+| g-rafters.jpg | https://www.pexels.com/photo/8817839/ (Ron Lach) |
+| g-frame.jpg | https://www.pexels.com/photo/8491084/ (vip-foto) |
