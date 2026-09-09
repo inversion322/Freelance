@@ -160,13 +160,13 @@ function House({ reduce, progress }: { reduce: boolean; progress: MutableRefObje
   const postH = canopyY - 0.03 - 0.06;       // столбы — до низа навеса, не сквозь него
 
   return (
-    <group ref={group} position={[-0.35, -0.85, 0]} scale={0.6}>
+    <group ref={group} position={[-0.35, -0.6, 0]} scale={0.6}>
       <Layer k="found" index={3} progress={progress}>
         <mesh position={[0, -0.12, 0]} receiveShadow><boxGeometry args={[W + 0.2, 0.22, D + 0.2]} /><meshStandardMaterial color={GRILLAGE} roughness={0.95} emissive="#E8B56B" emissiveIntensity={0} /></mesh>
         {[[-W / 2, -D / 2], [W / 2, -D / 2], [-W / 2, D / 2], [W / 2, D / 2], [0, -D / 2], [0, D / 2], [-W / 2, 0], [W / 2, 0]].map(([x, z], i) => (
           <mesh key={i} position={[x, -0.6, z]}><boxGeometry args={[0.2, 0.75, 0.2]} /><meshStandardMaterial color={PILE} roughness={0.95} emissive="#E8B56B" emissiveIntensity={0} /></mesh>
         ))}
-        <mesh position={[0.4, -1.0, 0]} rotation={[-Math.PI / 2, 0, 0]} receiveShadow><circleGeometry args={[3.3, 48]} /><meshStandardMaterial color="#2A3A30" roughness={1} /></mesh>
+        <mesh position={[0.4, -1.0, 0]} rotation={[-Math.PI / 2, 0, 0]} receiveShadow><circleGeometry args={[3.0, 48]} /><meshStandardMaterial color="#2A3A30" roughness={1} /></mesh>
       </Layer>
 
       <Layer k="deck" index={2} progress={progress}>
@@ -202,7 +202,7 @@ function House({ reduce, progress }: { reduce: boolean; progress: MutableRefObje
 
 /** камера следит за разборкой: отъезжает и поднимает точку взгляда, чтобы стопка слоёв оставалась в кадре целиком */
 function CameraRig({ progress }: { progress: MutableRefObject<number> }) {
-  const target = useRef(new THREE.Vector3(0, 0.35, 0));
+  const target = useRef(new THREE.Vector3(0, -0.15, 0));
   useFrame(({ camera }, dt) => {
     const p = progress.current;
     const k = Math.min(1, dt * 3.5);
@@ -210,7 +210,7 @@ function CameraRig({ progress }: { progress: MutableRefObject<number> }) {
     camera.position.x += (px - camera.position.x) * k;
     camera.position.y += (py - camera.position.y) * k;
     camera.position.z += (pz - camera.position.z) * k;
-    const ty = 0.35 + p * 1.05;
+    const ty = -0.15 + p * 1.15;
     target.current.y += (ty - target.current.y) * k;
     camera.lookAt(target.current);
   });
@@ -234,7 +234,7 @@ export default function HouseScene({ progress }: SceneProps) {
         <House reduce={reduce} progress={progress} />
       </Float>
       {!reduce && <Sparkles count={40} scale={[7, 5, 7]} position={[0, 1.4, 0]} size={2.2} speed={0.25} opacity={0.35} color="#E6C58A" />}
-      <ContactShadows position={[-0.3, -1.46, 0]} opacity={0.5} scale={12} blur={2.4} far={4} />
+      <ContactShadows position={[-0.3, -1.21, 0]} opacity={0.5} scale={12} blur={2.4} far={4} />
     </Canvas>
   );
 }

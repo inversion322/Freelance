@@ -31,3 +31,10 @@
 | p-list-167.jpg | https://www.pexels.com/photo/16270705/ (ASPhotography) |
 | g-rafters.jpg | https://www.pexels.com/photo/8817839/ (Ron Lach) |
 | g-frame.jpg | https://www.pexels.com/photo/8491084/ (vip-foto) |
+| st-1.jpg | https://www.pexels.com/photo/14840752/ (IWasHere) |
+| st-2.jpg | https://www.pexels.com/photo/7641913/ (A Darmel) |
+| st-4.jpg | https://www.pexels.com/photo/5484741/ (Mike Van Schoonderwalt) |
+| st-6.jpg | https://www.pexels.com/photo/5691531/ (Ksenia Chernaya) |
+| st-7.jpg | https://www.pexels.com/photo/5767595/ (Ksenia Chernaya) |
+| st-8.jpg | https://www.pexels.com/photo/221027/ (Pixabay) |
+| st-3.jpg | https://www.pexels.com/photo/29735767/ (Gaion) |

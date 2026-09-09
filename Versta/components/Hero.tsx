@@ -86,7 +86,7 @@ export default function Hero() {
           </div>
         </div>
         {/* 3D только с планшета и выше: на телефоне остаётся фотография */}
-        <div className="pointer-events-none relative hidden h-[84vh] w-full md:block" aria-hidden>
+        <div className="pointer-events-none relative hidden h-[88vh] w-full md:block" aria-hidden>
           <HouseScene progress={progress} />
         </div>
       </div>
