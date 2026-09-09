@@ -12,7 +12,7 @@ gsap.registerPlugin(ScrollTrigger);
 /** пока грузится чанк three.js (~1 МБ), справа стоит статичный кадр собранного дома */
 const HouseScene = dynamic(() => import('./HouseScene'), {
   ssr: false,
-  loading: () => <Image src={img('house-still.jpg')} alt="" aria-hidden fill sizes="50vw" className="object-cover object-center" />,
+  loading: () => <Image src={img('house-still.jpg')} alt="" aria-hidden fill priority sizes="50vw" className="object-cover object-center" />,
 });
 
 /** подписи слоёв — дом разбирается снизу вверх по мере скролла */
