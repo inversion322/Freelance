@@ -128,8 +128,9 @@ function House({ reduce, progress }: { reduce: boolean; progress: MutableRefObje
     const p = motion(progress.current);
     const calm = 1 - p; // после последней фазы дом стоит: ни дыхания, ни покачивания
     const idle = reduce ? 0 : Math.sin(state.clock.elapsedTime * 0.25) * 0.05 * calm;
-    const ty = -0.55 + idle + p * 0.5 + (reduce ? 0 : pointer.current.x * 0.18);
-    const tx = (reduce ? 0 : pointer.current.y * 0.04) + p * 0.14;
+    // параллакс мыши тоже гаснет: после последней подписи дом не реагирует ни на скролл, ни на курсор
+    const ty = -0.55 + idle + p * 0.5 + (reduce ? 0 : pointer.current.x * 0.18 * calm);
+    const tx = (reduce ? 0 : pointer.current.y * 0.04 * calm) + p * 0.14;
     const k = Math.min(1, dt * 4);
     g.rotation.y += (ty - g.rotation.y) * k;
     g.rotation.x += (tx - g.rotation.x) * k;
