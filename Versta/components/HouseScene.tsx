@@ -1,5 +1,5 @@
 'use client';
-import { useMemo, useRef, useEffect, useState, type MutableRefObject } from 'react';
+import { Suspense, useMemo, useRef, useEffect, useState, type MutableRefObject } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { ContactShadows, Environment, Float, Sparkles } from '@react-three/drei';
 import * as THREE from 'three';
@@ -160,7 +160,10 @@ export default function HouseScene({ progress }: SceneProps) {
       <ambientLight intensity={0.25} />
       <directionalLight position={[-2.5, 6.5, 6.5]} intensity={1.7} castShadow shadow-mapSize={[2048, 2048]} shadow-bias={-0.0004} />
       <directionalLight position={[5, 3, -5]} intensity={0.35} color="#cfe0d8" />
-      <Environment files={`${base}/hdr/forest_slope.hdr`} environmentIntensity={0.55} />
+      {/* HDR 1,9 МБ в своём Suspense: дом рисуется сразу на обычном свете, отражения подключаются, когда карта приедет */}
+      <Suspense fallback={null}>
+        <Environment files={`${base}/hdr/forest_slope.hdr`} environmentIntensity={0.55} />
+      </Suspense>
       <Float speed={reduce ? 0 : 1.1} rotationIntensity={reduce ? 0 : 0.08} floatIntensity={reduce ? 0 : 0.25} floatingRange={[-0.04, 0.04]}>
         <House reduce={reduce} progress={progress} />
       </Float>
