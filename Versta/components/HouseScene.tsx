@@ -1,7 +1,7 @@
 'use client';
 import { Suspense, useMemo, useRef, useEffect, useState, type MutableRefObject } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { ContactShadows, Environment, Float, Sparkles } from '@react-three/drei';
+import { ContactShadows, Environment, Sparkles } from '@react-three/drei';
 import * as THREE from 'three';
 import { base } from '@/lib/base';
 
@@ -125,12 +125,15 @@ function House({ reduce, progress }: { reduce: boolean; progress: MutableRefObje
     if (!reduce) built.current = (performance.now() - start.current) / 1000 - 0.3;
     const g = group.current; if (!g) return;
     const p = motion(progress.current);
-    const idle = reduce ? 0 : Math.sin(state.clock.elapsedTime * 0.25) * 0.05;
+    const calm = 1 - p; // после последней фазы дом стоит: ни дыхания, ни покачивания
+    const idle = reduce ? 0 : Math.sin(state.clock.elapsedTime * 0.25) * 0.05 * calm;
     const ty = -0.55 + idle + p * 0.5 + (reduce ? 0 : pointer.current.x * 0.18);
     const tx = (reduce ? 0 : pointer.current.y * 0.04) + p * 0.14;
     const k = Math.min(1, dt * 4);
     g.rotation.y += (ty - g.rotation.y) * k;
     g.rotation.x += (tx - g.rotation.x) * k;
+    const bob = reduce ? 0 : Math.sin(state.clock.elapsedTime * 1.1) * 0.03 * calm;
+    g.position.y = -0.6 + bob;
   });
 
   const wallTop = ROWS * (H + GAP);
@@ -233,9 +236,7 @@ export default function HouseScene({ progress }: SceneProps) {
       <Suspense fallback={null}>
         <Environment files={`${base}/hdr/forest_slope_512.hdr`} environmentIntensity={0.55} />
       </Suspense>
-      <Float speed={reduce ? 0 : 1.1} rotationIntensity={reduce ? 0 : 0.08} floatIntensity={reduce ? 0 : 0.25} floatingRange={[-0.04, 0.04]}>
-        <House reduce={reduce} progress={progress} />
-      </Float>
+      <House reduce={reduce} progress={progress} />
       {!reduce && <Sparkles count={40} scale={[7, 5, 7]} position={[0, 1.4, 0]} size={2.2} speed={0.25} opacity={0.35} color="#E6C58A" />}
       <ContactShadows position={[-0.3, -1.21, 0]} opacity={0.5} scale={12} blur={2.4} far={4} />
     </Canvas>
