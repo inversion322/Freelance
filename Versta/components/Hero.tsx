@@ -9,7 +9,11 @@ import { brand } from '@/lib/house';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const HouseScene = dynamic(() => import('./HouseScene'), { ssr: false, loading: () => null });
+/** пока грузится чанк three.js (~1 МБ), справа стоит статичный кадр собранного дома */
+const HouseScene = dynamic(() => import('./HouseScene'), {
+  ssr: false,
+  loading: () => <Image src={img('house-still.jpg')} alt="" aria-hidden fill sizes="50vw" className="object-cover object-center" />,
+});
 
 /** подписи слоёв — дом разбирается снизу вверх по мере скролла */
 const layers = [
@@ -81,7 +85,7 @@ export default function Hero() {
           </div>
         </div>
         {/* 3D только с планшета и выше: на телефоне остаётся фотография */}
-        <div className="pointer-events-none hidden h-[84vh] w-full md:block" aria-hidden>
+        <div className="pointer-events-none relative hidden h-[84vh] w-full md:block" aria-hidden>
           <HouseScene progress={progress} />
         </div>
       </div>
