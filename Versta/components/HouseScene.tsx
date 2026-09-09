@@ -162,7 +162,7 @@ export default function HouseScene({ progress }: SceneProps) {
       <directionalLight position={[5, 3, -5]} intensity={0.35} color="#cfe0d8" />
       {/* HDR 1,9 МБ в своём Suspense: дом рисуется сразу на обычном свете, отражения подключаются, когда карта приедет */}
       <Suspense fallback={null}>
-        <Environment files={`${base}/hdr/forest_slope.hdr`} environmentIntensity={0.55} />
+        <Environment files={`${base}/hdr/forest_slope_512.hdr`} environmentIntensity={0.55} />
       </Suspense>
       <Float speed={reduce ? 0 : 1.1} rotationIntensity={reduce ? 0 : 0.08} floatIntensity={reduce ? 0 : 0.25} floatingRange={[-0.04, 0.04]}>
         <House reduce={reduce} progress={progress} />

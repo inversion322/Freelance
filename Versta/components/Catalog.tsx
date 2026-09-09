@@ -92,7 +92,7 @@ export default function Catalog({ onPick }: { onPick: (id: string) => void }) {
               <article key={p.id} data-flip-id={p.id} className={`pcard card-hover card flex flex-col ${isOpen ? 'lg:col-span-2' : ''}`}>
                 {/* фото проекта — главный визуал; планировка раскрывается по «Помещения» */}
                 <div className="relative aspect-[4/3] overflow-hidden bg-paper">
-                  <Image src={p.img} alt={`${p.name}: ${p.floors === 1 ? 'одноэтажный' : 'двухэтажный'} дом ${p.area} м²`} fill sizes="(min-width:1024px) 33vw, (min-width:640px) 50vw, 100vw" className="card-img object-cover" />
+                  <Image src={p.img} alt={`${p.name}: ${p.floors === 1 ? 'одноэтажный' : 'двухэтажный'} дом ${p.area} м²`} fill sizes="(min-width:1024px) 33vw, (min-width:640px) 50vw, 100vw" fetchPriority="low" className="card-img object-cover" />
                   <div className="absolute left-4 top-4 rounded-full bg-paper-2/95 px-3 py-1 text-[12px] font-medium">{p.series} · {p.timber} мм</div>
                   <div className="absolute bottom-4 right-4 rounded-full bg-ink/80 px-3 py-1 text-[12px] font-medium text-white">{p.floors === 1 ? '1 этаж' : '2 этажа'} · {p.area} м²</div>
                 </div>
