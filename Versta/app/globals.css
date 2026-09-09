@@ -119,3 +119,19 @@ p { margin: 0; }
 .layer-enter { opacity: 1; transform: translateY(0); transition: opacity 240ms var(--ease-out), transform 240ms var(--ease-out); }
 @starting-style { .layer-enter { opacity: 0; transform: translateY(6px); } }
 @media (prefers-reduced-motion: reduce) { .layer-enter { transition: opacity 240ms ease; } @starting-style { .layer-enter { transform: none; } } }
+
+/* пошаговые секции: активный пункт подсвечен, остальные приглушены; переход — transform и прозрачность */
+.step-row { transition: opacity 320ms var(--ease-out), transform 320ms var(--ease-out); }
+.step-row.off { opacity: .28; transform: translateX(10px); }
+.step-row.past { opacity: .5; }
+.step-row.on { opacity: 1; transform: none; }
+.step-row.on .step-num { color: #fff; }
+.step-mark { position: absolute; left: -22px; top: 4px; width: 3px; height: 0; border-radius: 2px; background: #fff; transition: height 320ms var(--ease-out); }
+.step-row.on .step-mark { height: 26px; }
+.gstep { transition: opacity 320ms var(--ease-out), transform 320ms var(--ease-out); transform-origin: left bottom; cursor: pointer; }
+.gstep.off { opacity: .32; transform: scale(.84); }
+.gstep.on { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .step-row, .gstep { transition: opacity 320ms ease; transform: none !important; }
+  .step-mark { transition: none; }
+}
