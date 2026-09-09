@@ -114,3 +114,8 @@ p { margin: 0; }
   .print-only { display: block !important; }
 }
 .print-only { display: none; }
+
+/* подпись слоя в герое: появляется из уже видимого состояния при смене слоя */
+.layer-enter { opacity: 1; transform: translateY(0); transition: opacity 240ms var(--ease-out), transform 240ms var(--ease-out); }
+@starting-style { .layer-enter { opacity: 0; transform: translateY(6px); } }
+@media (prefers-reduced-motion: reduce) { .layer-enter { transition: opacity 240ms ease; } @starting-style { .layer-enter { transform: none; } } }

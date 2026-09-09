@@ -1,15 +1,48 @@
 'use client';
+import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import dynamic from 'next/dynamic';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { img } from '@/lib/base';
 import { brand } from '@/lib/house';
 
+gsap.registerPlugin(ScrollTrigger);
+
 const HouseScene = dynamic(() => import('./HouseScene'), { ssr: false, loading: () => null });
 
+/** подписи слоёв — дом разбирается снизу вверх по мере скролла */
+const layers = [
+  { at: 0.0, title: 'Собранный дом', text: 'Домокомплект встаёт на участке за месяц-полтора.' },
+  { at: 0.3, title: 'Кровля и свесы', text: 'Стропила со скользящими узлами под усадку, свес 550 мм. Гарантия 10 лет.' },
+  { at: 0.55, title: 'Стеновой комплект', text: 'Клеёный брус 202–302 мм, венцы с чашами и перевязкой углов. Гарантия 50 лет.' },
+  { at: 0.8, title: 'Фундамент', text: 'Сваи 200×200×3000 и ростверк 300×400 по отчёту геологии. Гарантия 50 лет.' },
+];
+
 export default function Hero() {
+  const wrap = useRef<HTMLElement>(null);
+  const progress = useRef(0);
+  const [layer, setLayer] = useState(0);
+  const [assembled, setAssembled] = useState(true);
+
+  useEffect(() => {
+    if (window.innerWidth < 768 || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const st = ScrollTrigger.create({
+      trigger: wrap.current, start: 'top top', end: '+=140%', pin: true, scrub: 0.6,
+      onUpdate: (self) => {
+        progress.current = self.progress;
+        let idx = 0; for (let i = 0; i < layers.length; i++) if (self.progress >= layers[i].at) idx = i;
+        setLayer(idx); setAssembled(self.progress < 0.05);
+      },
+    });
+    return () => st.kill();
+  }, []);
+
+  const L = layers[layer];
+
   return (
-    <section className="relative min-h-[100svh] overflow-hidden bg-ink text-white">
-      {/* телефон и планшет: фотография; десктоп: дом стоит на собственном тёмном поле, без фото под ним */}
+    <section ref={wrap} className="relative min-h-[100svh] overflow-hidden bg-ink text-white">
+      {/* телефон и планшет: фотография; десктоп: дом на собственном тёмном поле */}
       <div className="absolute inset-0 md:hidden">
         <Image src={img('hero.jpg')} alt="" aria-hidden fill priority sizes="100vw" className="object-cover" />
         <div className="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/55 to-ink/40" />
@@ -37,11 +70,19 @@ export default function Hero() {
             <a href="#catalog" className="pill pill-paper">Смотреть проекты</a>
             <a href="#calc" className="pill pill-pine">Рассчитать смету <span aria-hidden>→</span></a>
           </div>
+
+          {/* подпись текущего слоя — только на десктопе, где есть сцена */}
+          <div className="mt-10 hidden max-w-[40ch] border-t border-white/15 pt-5 md:block" aria-live="polite">
+            <div key={layer} className="layer-enter">
+              <div className="font-serif text-[24px]">{L.title}</div>
+              <p className="mt-1 text-[14px] text-white/70">{L.text}</p>
+            </div>
+            <div className={`mt-4 text-[12px] text-white/45 transition-opacity duration-300 ${assembled ? 'opacity-100' : 'opacity-0'}`}>Прокрутите — дом разберётся на слои ↓</div>
+          </div>
         </div>
-        {/* 3D: дом собирается венец за венцом и поворачивается за курсором. Только с планшета и выше:
-            на телефоне пустой блок и 1,8 МБ скриптов не окупаются — там остаётся фотография */}
-        <div className="pointer-events-none hidden h-[74vh] w-full md:block" aria-hidden>
-          <HouseScene />
+        {/* 3D только с планшета и выше: на телефоне остаётся фотография */}
+        <div className="pointer-events-none hidden h-[84vh] w-full md:block" aria-hidden>
+          <HouseScene progress={progress} />
         </div>
       </div>
     </section>
