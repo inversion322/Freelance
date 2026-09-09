@@ -34,7 +34,7 @@
 | st-1.jpg | https://www.pexels.com/photo/14840752/ (IWasHere) |
 | st-2.jpg | https://www.pexels.com/photo/7641913/ (A Darmel) |
 | st-4.jpg | https://www.pexels.com/photo/5484741/ (Mike Van Schoonderwalt) |
-| st-6.jpg | https://www.pexels.com/photo/5691531/ (Ksenia Chernaya) |
-| st-7.jpg | https://www.pexels.com/photo/5767595/ (Ksenia Chernaya) |
-| st-8.jpg | https://www.pexels.com/photo/221027/ (Pixabay) |
+| st-6.jpg | https://unsplash.com/photos/734Ie1BsViU (Waldemar Brandt) |
+| st-7.jpg | https://unsplash.com/photos/E8HwjRc24OM (Olek Buzunov) |
+| st-8.jpg | https://www.pexels.com/photo/8820187/ (Ron Lach) |
 | st-3.jpg | https://www.pexels.com/photo/29735767/ (Gaion) |
