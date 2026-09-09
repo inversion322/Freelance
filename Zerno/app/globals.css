@@ -1,0 +1,126 @@
+@import "tailwindcss";
+
+@theme {
+  --color-cream: #F4E9D3;
+  --color-cream-2: #FBF5E8;
+  --color-ink: #1A0F08;
+  --color-ink-2: #2A1608;
+  --color-accent: #F3DFAF;
+  --color-caramel: #B77A3E;
+  --color-espresso: #3A1E10;
+  --color-muted: #7A6A58;
+  --color-line: #E2D6BF;
+  --font-script: var(--font-script), "Marck Script", cursive;
+  --font-sans: var(--font-manrope), "Manrope", -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+:root { color-scheme: light; --ease-out: cubic-bezier(0.23, 1, 0.32, 1); --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1); }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+body { background: var(--color-cream); color: var(--color-ink); font-family: var(--font-sans); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; font-variant-numeric: tabular-nums; }
+::selection { background: var(--color-caramel); color: #fff; }
+:focus-visible { outline: 2px solid var(--color-caramel); outline-offset: 3px; border-radius: 4px; }
+p { margin: 0; }
+
+/* рукописный дисплей — заголовки и пометки, как у palmo */
+.script { font-family: var(--font-script); font-weight: 400; line-height: 0.95; letter-spacing: 0; }
+.display { font-size: clamp(64px, 10vw, 152px); line-height: 0.85; }
+.display-2 { font-size: clamp(48px, 6vw, 96px); line-height: 0.95; }
+.display-3 { font-size: clamp(34px, 3.4vw, 52px); }
+h2, h3 { text-wrap: balance; }
+
+/* герой: фон — три переменные, которые GSAP перекрашивает при смене обжарки */
+.hero-bg { --bg-inner: #6B3A1E; --bg-mid: #3A1E10; --bg-outer: #140B06; background: radial-gradient(circle at 50% 46%, var(--bg-inner) 0%, var(--bg-mid) 52%, var(--bg-outer) 100%); }
+.glass { background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.2); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12), inset 0 0 0 1px rgba(255, 255, 255, 0.06); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+
+@layer components {
+  .nav-item { font-size: 13px; font-weight: 500; padding: 8px 18px; border-radius: 999px; color: rgba(255,255,255,.72); transition: background-color 200ms ease, color 200ms ease; }
+  .nav-item[aria-current="page"] { background: var(--color-accent); color: var(--color-ink-2); }
+  @media (hover: hover) and (pointer: fine) { .nav-item:hover { background: var(--color-accent); color: var(--color-ink-2); } }
+
+  .pill { display: inline-flex; align-items: center; gap: 12px; padding: 13px 22px; border-radius: 999px; font-weight: 600; font-size: 14px; line-height: 1; cursor: pointer;
+    transition: background-color 160ms ease, color 160ms ease, border-color 160ms ease, transform 160ms var(--ease-out); }
+  .pill:active { transform: scale(0.97); }
+  .pill-dark { background: rgba(0, 0, 0, 0.5); color: #fff; }
+  .pill-ink { background: var(--color-ink); color: #fff; }
+  .pill-accent { background: var(--color-accent); color: var(--color-ink-2); }
+  .pill-ghost { background: transparent; color: var(--color-ink); border: 1px solid var(--color-ink); }
+  .pill-glass { background: rgba(255,255,255,.08); color: #fff; border: 1px solid rgba(255,255,255,.22); }
+  @media (hover: hover) and (pointer: fine) {
+    .pill-dark:hover { background: rgba(0, 0, 0, 0.72); transform: translateY(-2px); }
+    .pill-ink:hover { background: var(--color-espresso); }
+    .pill-accent:hover { background: #fff; }
+    .pill-ghost:hover { background: var(--color-ink); color: #fff; }
+    .pill-glass:hover { background: rgba(255,255,255,.16); }
+  }
+  /* круглая «плюс»-кнопка внутри пилюли, как в эталоне */
+  .plus { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; background: var(--color-accent); color: var(--color-ink-2); font-size: 22px; font-weight: 700; line-height: 1; margin: -8px -12px -8px 0; }
+
+  .chip { display: inline-flex; align-items: center; padding: 8px 14px; border-radius: 999px; border: 1px solid var(--color-line); background: transparent; font-size: 13px; font-weight: 500; cursor: pointer;
+    transition: background-color 140ms ease, color 140ms ease, border-color 140ms ease, transform 160ms var(--ease-out); }
+  .chip:active { transform: scale(0.97); }
+  .chip[aria-pressed="true"] { background: var(--color-ink); color: #fff; border-color: var(--color-ink); }
+  @media (hover: hover) and (pointer: fine) { .chip:hover { border-color: var(--color-ink); } }
+  .press { transition: transform 160ms var(--ease-out), border-color 160ms ease, background-color 160ms ease, opacity 160ms ease; }
+  .press:active { transform: scale(0.97); }
+
+  /* карточка обжарки в герое: стекло, пакет выезжает на hover */
+  .rcard { position: relative; width: 132px; padding: 76px 14px 16px; border-radius: 26px; text-align: center; cursor: pointer; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); backdrop-filter: blur(10px);
+    transition: background-color 280ms var(--ease-out), border-color 280ms var(--ease-out), transform 160ms var(--ease-out); }
+  .rcard:active { transform: scale(0.97); }
+  .rcard[aria-pressed="true"] { border-color: var(--color-accent); }
+  .rcard .bag { position: absolute; left: 50%; top: -58px; width: 112px; transform: translateX(-50%); filter: drop-shadow(0 22px 30px rgba(0,0,0,.5)); transition: transform 450ms cubic-bezier(0.34, 1.56, 0.64, 1); pointer-events: none; will-change: transform; }
+  @media (hover: hover) and (pointer: fine) {
+    .rcard:hover { background: rgba(255,255,255,.12); border-color: rgba(255,255,255,.4); }
+    .rcard:hover .bag { transform: translateX(-50%) translateY(-22px) rotate(-10deg) scale(1.12); }
+  }
+  @media (max-width: 640px) { .rcard { width: 100px; padding: 60px 8px 12px; border-radius: 20px; } .rcard .bag { width: 88px; top: -46px; } }
+  .arrow { width: 38px; height: 38px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; color: #fff; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.16); cursor: pointer; transition: background-color 200ms ease, transform 160ms var(--ease-out); }
+  .arrow:active { transform: scale(0.94); }
+  @media (hover: hover) and (pointer: fine) { .arrow:hover { background: rgba(255,255,255,.14); } }
+
+  /* пар из чашки: мягкие пятна поднимаются и растворяются */
+  .wisp { position: absolute; bottom: -10%; border-radius: 50%; background: radial-gradient(circle, rgba(255,240,220,.9) 0%, rgba(255,240,220,0) 70%); filter: blur(10px); opacity: 0; pointer-events: none; animation: rise linear forwards; }
+  @keyframes rise { 0% { transform: translate3d(0, 0, 0) scale(.6); opacity: 0; } 12% { opacity: .22; } 85% { opacity: .1; } 100% { transform: translate3d(var(--dx), -110vh, 0) scale(1.6); opacity: 0; } }
+
+  /* смена подписи: появление из уже видимого состояния */
+  .swap-in { opacity: 1; transform: translateY(0); transition: opacity 260ms var(--ease-out), transform 260ms var(--ease-out); }
+  @starting-style { .swap-in { opacity: 0; transform: translateY(8px); } }
+
+  /* появление героя один раз при загрузке */
+  .enter { opacity: 1; transform: none; transition: opacity 600ms var(--ease-out), transform 600ms var(--ease-out); }
+  .enter-2 { transition-delay: 120ms; } .enter-3 { transition-delay: 240ms; } .enter-4 { transition-delay: 360ms; }
+  @starting-style { .enter { opacity: 0; transform: translateY(16px); } }
+
+  /* круглые бейджи-факты, как у palmo: кольцо медленно вращается, число стоит */
+  .badge-ring { animation: spin 26s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .card { background: var(--color-cream-2); border-radius: 22px; }
+  .card-hover { transition: transform 240ms var(--ease-out), box-shadow 240ms var(--ease-out); will-change: transform; }
+  @media (hover: hover) and (pointer: fine) { .card-hover:hover { transform: translateY(-4px); box-shadow: 0 24px 48px -28px rgba(26, 15, 8, .45); } }
+  .card-img { transition: transform 400ms var(--ease-out); }
+  @media (hover: hover) and (pointer: fine) { .card-hover:hover .card-img { transform: scale(1.04); } }
+
+  /* арки по верху тёмной секции, как у palmo */
+  .scallop { position: relative; }
+  .scallop::before { content: ""; position: absolute; left: 0; right: 0; top: -58px; height: 60px; background: radial-gradient(circle at 50% 100%, var(--color-ink-2) 58px, transparent 59px) 0 0 / 120px 60px repeat-x; }
+
+  details > summary { list-style: none; cursor: pointer; }
+  details > summary::-webkit-details-marker { display: none; }
+  .plus-i { display: inline-block; transition: transform 200ms var(--ease-out); }
+  details[open] .plus-i { transform: rotate(45deg); }
+  .hair { border-top: 1px solid var(--color-line); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .pill:active, .chip:active, .press:active, .rcard:active, .arrow:active { transform: none; }
+    .pill-dark:hover { transform: none; }
+    .rcard:hover .bag { transform: translateX(-50%); }
+    .wisp { animation: none; display: none; }
+    .badge-ring { animation: none; }
+    .swap-in, .enter { transition: opacity 260ms ease; }
+    @starting-style { .swap-in, .enter { transform: none; } }
+    .card-hover:hover { transform: none; }
+  }
+}
