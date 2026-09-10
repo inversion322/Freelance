@@ -46,12 +46,22 @@ jobs:
           NEXT_PUBLIC_BASE_PATH: /Freelance/Zerno
           NEXT_PUBLIC_ASSET_VERSION: ${{ github.sha }}
         run: npm run build
+      - name: Install (Geliy)
+        working-directory: Geliy
+        run: npm ci
+      - name: Build (Geliy)
+        working-directory: Geliy
+        env:
+          NEXT_PUBLIC_BASE_PATH: /Freelance/Geliy
+          NEXT_PUBLIC_ASSET_VERSION: ${{ github.sha }}
+        run: npm run build
       - name: Assemble site
         run: |
-          mkdir -p site/Ostium site/Versta site/Zerno
+          mkdir -p site/Ostium site/Versta site/Zerno site/Geliy
           cp -r Ostium/out/. site/Ostium/
           cp -r Versta/out/. site/Versta/
           cp -r Zerno/out/. site/Zerno/
+          cp -r Geliy/out/. site/Geliy/
           touch site/.nojekyll
           cat > site/index.html <<'HTML'
           <!doctype html><html lang="ru"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
@@ -61,6 +71,7 @@ jobs:
           <a href="./Ostium/">Остеум — клиника имплантологии<small>Next 16, калькулятор стоимости, реальная фотография</small></a>
           <a href="./Versta/">Верста — дома из клеёного бруса<small>каталог с фильтрами, планировки, калькулятор сметы</small></a>
           <a href="./Zerno/">Зерно — спешелти-кофе<small>3D-зерно, следящее за курсором, смена обжарки с перекраской сцены, подписка</small></a>
+          <a href="./Geliy/">Гелий — студия аэродизайна<small>поле из 96 шаров с физикой: шаропад, сердце, запуск в небо, палитры события</small></a>
           <a href="./" style="border-bottom:1px solid #333"><small>Клиники и компании вымышленные. Демонстрационные работы.</small></a>
           </html>
           HTML
