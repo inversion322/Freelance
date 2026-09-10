@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Николай Ахвледиани — сайты и лендинги на коде</title>
+<meta name="description" content="Семь работ: три рабочих сайта и четыре демо-концепта лендингов под разные ниши. Next.js, React, three.js. Без конструкторов и абонплаты.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root { --bg:#0B0C0E; --ink:#E9ECEF; --mute:#8A9099; --line:#22262B; --acc:#FF5A1F; --sans:"Golos Text",-apple-system,"Segoe UI",Roboto,sans-serif; --mono:"JetBrains Mono",ui-monospace,Menlo,monospace; }
+  * { box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { margin:0; background:var(--bg); color:var(--ink); font:16px/1.55 var(--sans); -webkit-font-smoothing:antialiased;
+    background-image:linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px); background-size:96px 96px; background-position:-1px -1px; }
+  a { color:inherit; }
+  .wrap { max-width:1180px; margin:0 auto; padding:0 24px; }
+  .mono { font-family:var(--mono); font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--mute); }
+  header { padding:40px 0 28px; display:flex; justify-content:space-between; align-items:flex-start; gap:24px; flex-wrap:wrap; }
+  header .name { font-weight:600; font-size:18px; }
+  header nav { display:flex; gap:22px; }
+  header nav a { text-decoration:none; color:var(--mute); font-size:14px; } header nav a:hover { color:var(--ink); }
+  .hero { padding:56px 0 48px; border-top:1px solid var(--line); border-bottom:1px solid var(--line); display:grid; grid-template-columns:1.3fr 1fr; gap:48px; align-items:end; }
+  h1 { font-size:clamp(34px,5vw,60px); line-height:1.02; letter-spacing:-.02em; margin:14px 0 0; font-weight:600; text-wrap:balance; }
+  .hero p { margin:0; color:var(--mute); max-width:44ch; }
+  .hero .facts { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; border-left:1px solid var(--line); padding-left:24px; }
+  .fact b { display:block; font-size:28px; font-weight:600; font-variant-numeric:tabular-nums; }
+  .fact span { color:var(--mute); font-size:13px; }
+  .section { padding:56px 0 8px; }
+  .section h2 { font-size:13px; font-weight:500; margin:0 0 8px; } 
+  .section p.lead { color:var(--mute); margin:0 0 28px; max-width:64ch; }
+  .work { display:grid; grid-template-columns:120px 1fr 400px; gap:32px; padding:32px 0; border-top:1px solid var(--line); align-items:center; }
+  .work:last-child { border-bottom:1px solid var(--line); }
+  .code { font-family:var(--mono); font-size:13px; color:var(--acc); } .code small { display:block; color:var(--mute); margin-top:6px; font-size:11px; letter-spacing:.08em; text-transform:uppercase; }
+  .work h3 { margin:0 0 8px; font-size:24px; font-weight:600; letter-spacing:-.01em; }
+  .work h3 a { text-decoration:none; } .work h3 a:hover { color:var(--acc); }
+  .work p { margin:0 0 14px; color:var(--mute); max-width:56ch; }
+  .tags { display:flex; flex-wrap:wrap; gap:8px; } .tags span { font-family:var(--mono); font-size:11px; letter-spacing:.06em; padding:5px 9px; border:1px solid var(--line); color:var(--mute); }
+  .cover { position:relative; aspect-ratio:3/2; overflow:hidden; border:1px solid var(--line); background:#111318; }
+  .cover img { width:100%; height:100%; object-fit:cover; display:block; transition:transform .5s cubic-bezier(.23,1,.32,1); }
+  @media (hover:hover) { .work:hover .cover img { transform:scale(1.03); } }
+  .cover::before, .cover::after { content:""; position:absolute; width:10px; height:10px; border-color:var(--acc); border-style:solid; }
+  .cover::before { left:-1px; top:-1px; border-width:1px 0 0 1px; } .cover::after { right:-1px; bottom:-1px; border-width:0 1px 1px 0; }
+  .btn { display:inline-flex; align-items:center; gap:8px; font-size:14px; text-decoration:none; border:1px solid var(--ink); padding:10px 16px; transition:background .16s, color .16s, transform .16s cubic-bezier(.23,1,.32,1); }
+  .btn:hover { background:var(--ink); color:var(--bg); } .btn:active { transform:scale(.97); }
+  .btn.acc { border-color:var(--acc); color:var(--acc); } .btn.acc:hover { background:var(--acc); color:#0B0C0E; }
+  footer { padding:56px 0 48px; color:var(--mute); font-size:13px; display:flex; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+  @media (max-width:900px) { .hero { grid-template-columns:1fr; } .hero .facts { border-left:0; padding-left:0; } .work { grid-template-columns:1fr; gap:16px; } .work .cover { order:-1; } }
+  @media (prefers-reduced-motion:reduce) { .cover img { transition:none; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div><div class="name">Николай Ахвледиани</div><div class="mono">сайты на коде · Москва</div></div>
+    <nav><a href="#work">Работы</a><a href="#demo">Демо-концепты</a><a href="https://nickakh.ru/">nickakh.ru</a></nav>
+  </header>
+
+  <section class="hero">
+    <div>
+      <div class="mono">Портфолио · сентябрь 2026</div>
+      <h1>Лендинги на Next.js, которые не требуют от вас готового текста</h1>
+      <p style="margin-top:18px">Пишу тексты по брифу, собираю на коде без конструкторов и абонплаты, при необходимости добавляю 3D-сцену, калькулятор или каталог. Ниже три рабочих сайта и четыре демо-концепта под разные ниши.</p>
+      <div style="margin-top:26px;display:flex;gap:12px;flex-wrap:wrap"><a class="btn acc" href="https://kwork.ru/">Заказать на Kwork</a><a class="btn" href="https://nickakh.ru/">Написать напрямую</a></div>
+    </div>
+    <div class="facts">
+      <div class="fact"><b>7</b><span>работ в витрине</span></div>
+      <div class="fact"><b>0 ₽</b><span>абонплаты за конструктор</span></div>
+      <div class="fact"><b>3D</b><span>сцены в первом экране</span></div>
+    </div>
+  </section>
+
+  <section class="section" id="work">
+    <h2 class="mono">Рабочие сайты</h2>
+    <p class="lead">Живые проекты, которыми пользуются люди.</p>
+    <article class="work">
+      <div class="code">P1<small>ресторан</small></div>
+      <div><h3><a href="https://picco.rest/">Picco</a></h3><p>Сайт итальянского ресторана в центре Москвы: меню, бронирование, события. Сделан целиком: структура, тексты, вёрстка.</p><div class="tags"><span>сайт</span><span>меню</span><span>бронирование</span></div></div>
+      <a class="cover" href="https://picco.rest/" aria-label="Открыть picco.rest"><img src="covers/picco.png" alt="Главная страница сайта ресторана Picco" loading="lazy"></a>
+    </article>
+    <article class="work">
+      <div class="code">W1<small>сервис</small></div>
+      <div><h3><a href="https://workflowai.ru/">WorkFlow AI</a></h3><p>Лендинг сервиса ИИ-автоматизации контента для Telegram-каналов: сценарии, тарифы, форма подключения.</p><div class="tags"><span>лендинг</span><span>ИИ</span><span>Telegram</span></div></div>
+      <a class="cover" href="https://workflowai.ru/" aria-label="Открыть workflowai.ru"><img src="covers/workflowai.png" alt="Главная страница WorkFlow AI" loading="lazy"></a>
+    </article>
+    <article class="work">
+      <div class="code">N1<small>личный сайт</small></div>
+      <div><h3><a href="https://nickakh.ru/">nickakh.ru</a></h3><p>Личный сайт: ИИ-системы и автоматизации, услуги и контакты. Та же визуальная система, что и на этой странице.</p><div class="tags"><span>личный сайт</span><span>ИИ-агенты</span></div></div>
+      <a class="cover" href="https://nickakh.ru/" aria-label="Открыть nickakh.ru"><img src="covers/nickakh.png" alt="Главная страница nickakh.ru" loading="lazy"></a>
+    </article>
+  </section>
+
+  <section class="section" id="demo">
+    <h2 class="mono">Демо-концепты</h2>
+    <p class="lead">Лендинги под конкретные ниши, собранные как образцы. Компании, врачи, цены и адреса вымышленные; состав услуг повторяет структуру реальных московских компаний. Каждый открывается и работает целиком.</p>
+    <article class="work">
+      <div class="code">A1<small>медицина</small></div>
+      <div><h3><a href="./Ostium/">Остеум — клиника имплантологии</a></h3><p>Калькулятор стоимости имплантации в первом экране, схема установки импланта, реальная фотография вместо ИИ-картинок, запись со склонением услуг.</p><div class="tags"><span>Next.js</span><span>калькулятор</span><span>анимация кнопок</span></div></div>
+      <a class="cover" href="./Ostium/" aria-label="Открыть кейс Остеум"><img src="covers/ostium.png" alt="Первый экран лендинга клиники Остеум" loading="lazy"></a>
+    </article>
+    <article class="work">
+      <div class="code">Б1<small>строительство</small></div>
+      <div><h3><a href="./Versta/">Верста — дома из клеёного бруса</a></h3><p>Каталог из двенадцати проектов с фильтрами и планировками, калькулятор сметы по комплектациям, 3D-дом в герое, который разбирается на слои при прокрутке.</p><div class="tags"><span>Next.js</span><span>three.js</span><span>каталог</span><span>смета</span></div></div>
+      <a class="cover" href="./Versta/" aria-label="Открыть кейс Верста"><img src="covers/versta.png" alt="Первый экран лендинга Верста с 3D-домом" loading="lazy"></a>
+    </article>
+    <article class="work">
+      <div class="code">Г1<small>кофе</small></div>
+      <div><h3><a href="./Zerno/">Зерно — спешелти-кофе</a></h3><p>3D-зерно следит за курсором, переключение обжарки перекрашивает сцену и разбрасывает зёрна-спутники. Восемь сортов с фильтрами, подписка с расчётом цены.</p><div class="tags"><span>Next.js</span><span>three.js</span><span>GSAP</span><span>подписка</span></div></div>
+      <a class="cover" href="./Zerno/" aria-label="Открыть кейс Зерно"><img src="covers/zerno.png" alt="Первый экран лендинга Зерно с 3D-зерном" loading="lazy"></a>
+    </article>
+    <article class="work">
+      <div class="code">Д1<small>праздники</small></div>
+      <div><h3><a href="./Geliy/">Гелий — студия аэродизайна</a></h3><p>Поле из 96 шаров с физикой: парят в герое, падают шаропадом, собираются в сердце и улетают в камеру. Шторка палитр под событие, работы, цены, порядок заказа.</p><div class="tags"><span>Next.js</span><span>three.js</span><span>физика</span><span>инстансинг</span></div></div>
+      <a class="cover" href="./Geliy/" aria-label="Открыть кейс Гелий"><img src="covers/geliy.png" alt="Первый экран лендинга Гелий с шарами" loading="lazy"></a>
+    </article>
+  </section>
+
+  <footer>
+    <div>© 2026 Николай Ахвледиани · демо-концепты не являются сайтами реальных компаний</div>
+    <div>Фотографии в демо: Pexels и Unsplash, авторы указаны в CREDITS каждого кейса</div>
+  </footer>
+</div>
+</body>
+</html>
